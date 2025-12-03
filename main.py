@@ -1,13 +1,14 @@
 # Recursive solution - Automata A5 - Problem 1b.
 
 import jumpit_helpers as j
-from jumpit_helpers import Game, Sample_Game
+import dynamic_programming_jumpit as d
+from jumpit_helpers import Game, SampleGame
 
 # Game Instance
 if int(input("Random (1) or Sample (2) game?\n> ")) == 1:
     Jump_It = Game()
 else:
-    Jump_It = Sample_Game()
+    Jump_It = SampleGame()
 
 # User Feedback
 j.print_board(Jump_It)
