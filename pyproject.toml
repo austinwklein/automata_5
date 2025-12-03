@@ -1,0 +1,8 @@
+[project]
+name = "automata-5-git"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "tabulate>=0.9.0",
+]
