@@ -1,32 +1,7 @@
 import random as rnd
 from tabulate import tabulate as tab
 from enum import Enum
-
-#####################################################################
-""" $$$$$$$$$$$$$$$$$$$$$$$$$ CLASSES $$$$$$$$$$$$$$$$$$$$$$$$$$$ """
-#####################################################################
-
-""" ######################## Game Class ######################### """
-class Game:
-    def __init__(self):
-        self.size = init_game_size_from_user()
-        self.board = create_board(self.size)
-        self.costs = self.board[0]
-        self.jumps = self.board[1]
-
-class SampleGame(Game):
-    def __init__(self):
-        # No super since we are overwriting everything
-        self._sample = int(init_sample_choice_from_user())
-        self.board = get_sample_board(choice=self._sample)
-        self.size = get_size_from_board(self.board)
-        self.costs = self.board[0]
-        self.jumps = self.board[1]
-
-
-#####################################################################
-""" $$$$$$$$$$$$$$$$$$$$$$$$ Functions $$$$$$$$$$$$$$$$$$$$$$$$$$ """
-#####################################################################
+from Game import Game
 
 """ ######################## GAME FUNCS ######################### """
 # Get User Input
@@ -85,7 +60,7 @@ def get_cost(column: int, g: Game) -> int:
 
 """ ######################## ALGORITHMS ######################### """
 # Recursive (Naive) Solution - Dynamic Programming Problem
-def min_cost_jumpit(col: int, instance: Game):
+def min_cost_jump_it(col: int, instance: Game):
     if col == 1:
         return get_cost(col, instance), [1]
 
@@ -94,7 +69,7 @@ def min_cost_jumpit(col: int, instance: Game):
 
     for given_col in range(max(1, col - 3), col):  # Last three since max jump is three
         if given_col + instance.jumps[given_col - 1] >= col:
-            cost_from_prev, path_from_prev = min_cost_jumpit(given_col, instance)
+            cost_from_prev, path_from_prev = min_cost_jump_it(given_col, instance)
             cost_to_here = cost_from_prev + instance.costs[col - 1]
 
             if cost_to_here < min_cost:
