@@ -14,7 +14,7 @@ class Game:
         self.costs = self.board[0]
         self.jumps = self.board[1]
 
-class Sample_Game(Game):
+class SampleGame(Game):
     def __init__(self):
         # No super since we are overwriting everything
         self._sample = int(init_sample_choice_from_user())
